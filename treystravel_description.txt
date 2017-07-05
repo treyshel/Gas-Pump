@@ -1,0 +1,9 @@
+#gas price for regular- $2.07
+#gas price for mid-grade- $2.17
+#gas price for premium- $2.29
+
+
+#type,price per gal
+regular,2.07
+mid-grade,2.17
+premium,2.29
