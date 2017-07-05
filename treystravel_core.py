@@ -1,3 +1,8 @@
+Regular = 2.07
+MidGrade = 2.17
+Premium = 2.29
+
+
 def gas_description():
     '''list[str, float]
 

@@ -21,11 +21,11 @@ Push "Q" to quit.
     while gas != "Q".upper():
         gas = input(message)
         if gas == '87':
-            treys_travel(Regular, 2.07)
+            treys_travel('Regular', 2.07)
         elif gas == '89':
-            treys_travel(Mid-Grade, 2.17)
+            treys_travel('Mid-Grade', 2.17)
         elif gas == '92':
-            treys_travel(Premium, 2.29)
+            treys_travel('Premium', 2.29)
         elif gas == 'Q':
             total_amount += store_program_core.pay_after(gallons, gas_price)
             print('Your total cost is $' + str(total_amount))
