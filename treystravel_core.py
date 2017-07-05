@@ -1,6 +1,6 @@
-Regular = 2.07
-MidGrade = 2.17
-Premium = 2.29
+# Regular = 2.07
+# MidGrade = 2.17
+# Premium = 2.29
 
 
 def gas_description():
@@ -18,11 +18,25 @@ def gas_description():
 
 
 
-def gas_price(gas, amount):
+def gas_price(gas):
     '''(str) -> (float)'''
     if gas == '87':
-        return float(amount) * 2.07
+        return 2.07
     elif gas == '89':
-        return float(amount) * 2.17
+        return 2.17
     elif gas == '92':
-        return float(amount) * 2.29
+        return 2.29
+
+def get_gas_name(gas):
+    """str -> str"""
+    if gas == '87':
+        return 'Regular'
+    elif gas == '89':
+        return 'Mid-Grade'
+    elif gas == '92':
+        return 'Premium'
+
+def treys_travel(gas, price):
+    gasname = get_gas_name(gas)
+    amount_of_gal = float(input('\nOur {} gas is ${} per gallon. How many gallons would you like?\n'.format(gasname, price)))
+    return 'You have purchased {} gallons of {} gas. Your total will be ${}'.format(amount_of_gal, gasname, price * amount_of_gal)
