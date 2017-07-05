@@ -1,8 +1,8 @@
 import treystravel_core
 
 def treys_travel(gas, price):
-    amount = input('Our {} gas is ${} per gallon. How many gallons would you like?\n'.format(gas, price))
-    print('You have purchased', amount, '{}. Your total will be $' + int(pay_after(gallons, gas_price)))
+    amount = input('\nOur {} gas is ${} per gallon. How many gallons would you like?\n'.format(gas, price))
+    print('You have purchased', amount, '{}. Your total will be $' + int(treystravel_core.pay_after(gallons, gas_price)))
 def main():
     message = '''
     Welcome to TREY\'S TRAVEL GAS STATION!
@@ -27,7 +27,7 @@ Push "Q" to quit.
         elif gas == '92':
             treys_travel('Premium', 2.29)
         elif gas == 'Q':
-            total_amount += store_program_core.pay_after(gallons, gas_price)
+            total_amount += treystravel_core.pay_after(gallons, gas_price)
             print('Your total cost is $' + str(total_amount))
 
 
