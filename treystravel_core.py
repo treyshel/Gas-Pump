@@ -17,37 +17,12 @@ def gas_description():
     return gas 
 
 
-#pay_before:
-    #gallons = money / gas_price
-def pay_before(money, gas_price):
-    '''(float, float) -> (float)
-    
-    returns amount of gallons
-    
-    >>> gallons(20, 2.07)
-    9.66
-    >>> gallons(10, 2.17)
-    4.60
-    >>> gallons(35, 2.29)
-    15.28
-    '''
-    gallons = money / gas_price
-    #round gallons 2 decimal places
-    return round(gallons, 2)
 
-#pay after:
-    #total_cost = gallons * gas_price
-def pay_after(gallons, gas_price):
-    '''(float, float) -> (float)
-    
-    returns total cost of gas
-    24.839999999999996
-    >>> total_cost(12, 2.07)
-    24
-    >>> total_cost(10, 2.17)
-    21.70
-    >>> total_cost(7, 2.29)
-    16.03
-    '''
-    cost = gallons * gas_price
-    return round(cost, 2)
+def gas_price(gas, amount):
+    '''(str) -> (float)'''
+    if gas == '87':
+        return float(amount) * 2.07
+    elif gas == '89':
+        return float(amount) * 2.17
+    elif gas == '92':
+        return float(amount) * 2.29
