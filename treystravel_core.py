@@ -12,7 +12,6 @@ def gas_description():
     return gas 
 
 
-
 #pay_before:
     #gallons = money / gas_price
 def pay_before(money, gas_price):
@@ -28,7 +27,6 @@ def pay_before(money, gas_price):
     15.28
     '''
     gallons = money / gas_price
-    
     #round gallons 2 decimal places
     return round(gallons, 2)
 
