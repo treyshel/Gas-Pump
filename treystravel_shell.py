@@ -23,7 +23,8 @@ Push "Q" to quit.
         elif gas == 'Q':
             print('Program Abandoned.')
             break
-    
+    with open('log.txt', 'a') in history:
+        history.write('\n'treystravel_core.treys_travel(gas, treystravel_core.gas_price(gas)))
          
 
 
