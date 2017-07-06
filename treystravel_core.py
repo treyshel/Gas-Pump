@@ -7,7 +7,7 @@ def gas_description():
     '''list[str, float]
 
     >>> gas()
-    [['regular, 2.07], [mid-grade, 2.17], [premium, 2.29]]
+    [['Regular', 2.07], ['Mid-Grade', 2.17], ['Premium', 2.29]]
     '''
     gas = []
     with open('treystravel_description.txt', 'r') as file:
@@ -39,4 +39,4 @@ def get_gas_name(gas):
 def treys_travel(gas, price):
     gasname = get_gas_name(gas)
     amount_of_gal = float(input('\nOur {} gas is ${} per gallon. How many gallons would you like?\n'.format(gasname, price)))
-    return 'You have purchased {} gallons of {} gas. Your total will be ${}'.format(amount_of_gal, gasname, price * amount_of_gal)
+    return 'You have purchased {} gallons of {} gas. Your total will be ${:.2f}'.format(amount_of_gal, gasname, price * amount_of_gal)
