@@ -14,17 +14,25 @@ Please choose the type of gas\nyou would like to use today:\n
     
 Push "Q" to quit.
 '''
+
+    gasname = 'Regular' or 'Mid-Grade' or 'Premium'
+    price = '2.07' or '2.17' or '2.29'
     gas = ''
     while gas != "Q".upper():
         gas = input(message)
         if gas == '87' or gas == '89' or gas == '92':
-            print(treystravel_core.treys_travel(gas, treystravel_core.gas_price(gas))) 
+            a = float(input('\nOur {} gas is ${} per gallon. How many gallons would you like?\n'.format(gasname, price)))
+            msg = treystravel_core.treys_travel(gas, treystravel_core.gas_price(gas), a)
+            print(msg)
+            with open('log.txt', 'a') as history:
+                history.write(msg)
             break
+            
         elif gas == 'Q':
             print('Program Abandoned.')
             break
-    with open('log.txt', 'a') in history:
-        history.write('\n'treystravel_core.treys_travel(gas, treystravel_core.gas_price(gas)))
+    
+       
          
 
 
