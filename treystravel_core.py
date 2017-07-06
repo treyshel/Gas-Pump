@@ -2,23 +2,39 @@
 # MidGrade = 2.17
 # Premium = 2.29
 
+def open_tank():
+    """ None -> [[str, str, float, float]] """
+    gas = []
+    with open('tank.txt', 'r') as file:
+        file.readline()
+        for lines in file:
+            split_string = lines.split(', ')
+            gas.append([split_string[0], split_string[1], float(split_string[2]), float(split_string[3].strip())])
+    return gas 
+
+def make_message(inventory):
+    """ [[str, str, float, float]] -> str """
+    message = '\nWelcome to TREY\'S TRAVEL GAS STATION!\n\nWe are pleased to be your provider for the best gas around.\n\nPlease choose the type of gas\nyou would like to use today:\n'
+    for item in inventory:
+        message += '{}. {} (${:0.2f})\n'.format(item[0], item[1], item[3])
+    message += '\n\nPush "Q" to quit.\n'
+    return message
+
 
 def gas_description():
-    '''list[str,int,float]
-
+    '''list[str, int ,float]
     >>> gas()
     [['Regular', 5000, 2.07], ['Mid-Grade', 2000, 2.17], ['Premium', 3500, 2.29]]
     '''
     gas = []
-    with open('treystravel_description.txt', 'r') as file:
+    with open('tank.txt', 'r') as file:
+        file.readline()
         for lines in file:
             split_string = lines.split(',')
-            gas.append(([split_string[0]), int(split_string[1]), float(split_string[2]])
+            gas.append([split_string[0], int(split_string[1]), float(split_string[2])])
     return gas 
 
-
-
-def gas_price(gas):
+def get_gas_price(gas):
     '''(str) -> (float)'''
     if gas == '87':
         return 2.07
@@ -36,6 +52,23 @@ def get_gas_name(gas):
     elif gas == '92':
         return 'Premium'
 
+def get_amount_message(gasname, price):
+    return '\nOur {} gas is ${} per gallon. How many gallons would you like?\n'.format(gasname, price)
+
 def treys_travel(gas, price, amount_of_gal):
     gasname = get_gas_name(gas)
     return '\nYou have purchased {} gallons of {} gas. Your total will be ${:.2f}'.format(amount_of_gal, gasname, price * amount_of_gal)
+
+def tank_take_away(inventory, gas, amount, msg):
+    """ [[str, str, float, float]], str, float, str -> bool """
+    string_list = ['code, type, amount_in_tank, price']
+    for item in inventory:
+        if item[0] == gas:
+            item[2] = item[2] - amount
+        string_list.append('{}, {}, {}, {}'.format(item[0], item[1], item[2], item[3]))
+    message = '\n'.join(string_list)
+    with open('tank.txt', 'w') as file:
+        file.write(message)
+    with open('log.txt', 'a') as history:
+        history.write(msg)
+    return True
