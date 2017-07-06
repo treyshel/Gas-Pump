@@ -4,16 +4,16 @@
 
 
 def gas_description():
-    '''list[str, float]
+    '''list[str,int,float]
 
     >>> gas()
-    [['Regular', 2.07], ['Mid-Grade', 2.17], ['Premium', 2.29]]
+    [['Regular', 5000, 2.07], ['Mid-Grade', 2000, 2.17], ['Premium', 3500, 2.29]]
     '''
     gas = []
     with open('treystravel_description.txt', 'r') as file:
         for lines in file:
             split_string = lines.split(',')
-            gas.append([split_string[0], float(split_string[1])])
+            gas.append(([split_string[0]), int(split_string[1]), float(split_string[2]])
     return gas 
 
 
