@@ -36,7 +36,6 @@ def get_gas_name(gas):
     elif gas == '92':
         return 'Premium'
 
-def treys_travel(gas, price):
+def treys_travel(gas, price, amount_of_gal):
     gasname = get_gas_name(gas)
-    amount_of_gal = float(input('\nOur {} gas is ${} per gallon. How many gallons would you like?\n'.format(gasname, price)))
-    return 'You have purchased {} gallons of {} gas. Your total will be ${:.2f}'.format(amount_of_gal, gasname, price * amount_of_gal)
+    return '\nYou have purchased {} gallons of {} gas. Your total will be ${:.2f}'.format(amount_of_gal, gasname, price * amount_of_gal)
