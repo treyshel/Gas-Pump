@@ -2,35 +2,24 @@ import treystravel_core
 
 
 def main():
-    message = '''
-    Welcome to TREY\'S TRAVEL GAS STATION!
+    inventory = treystravel_core.open_tank()
+    message = treystravel_core.make_message(inventory)
 
-We are pleased to be your provider for the best gas around.
-
-Please choose the type of gas\nyou would like to use today:\n
-    87. Regular ($2.07)
-    89. Mid-Grade ($2.17)
-    92. Premium ($2.29)
-    
-Push "Q" to quit.
-'''
-
-    gasname = 'Regular' or 'Mid-Grade' or 'Premium'
-    price = '2.07' or '2.17' or '2.29'
-    gas = ''
-    while gas != "Q".upper():
-        gas = input(message)
-        if gas == '87' or gas == '89' or gas == '92':
-            a = float(input('\nOur {} gas is ${} per gallon. How many gallons would you like?\n'.format(gasname, price)))
-            msg = treystravel_core.treys_travel(gas, treystravel_core.gas_price(gas), a)
+    gas = input(message)
+    while True:
+        if gas in ['87', '89', '92']:
+            gasname = treystravel_core.get_gas_name(gas)
+            price = treystravel_core.get_gas_price(gas)             
+            gallons = float(input(treystravel_core.get_amount_message(gasname, price)))
+            msg = treystravel_core.treys_travel(gas, treystravel_core.get_gas_price(gas), gallons)
             print(msg)
-            with open('log.txt', 'a') as history:
-                history.write(msg)
+            if treystravel_core.tank_take_away(inventory, gas, gallons, msg):
+                print('Successful Sale')
             break
-            
         elif gas == 'Q':
             print('Program Abandoned.')
             break
+        gas = input('Wrong Input\n')
     
        
          
