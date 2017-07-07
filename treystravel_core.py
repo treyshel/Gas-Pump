@@ -23,15 +23,15 @@ def make_message(inventory):
 
 def gas_description():
     '''list[str, int ,float]
-    >>> gas()
-    [['Regular', 5000, 2.07], ['Mid-Grade', 2000, 2.17], ['Premium', 3500, 2.29]]
+    >>> gas_description()
+    [[87, 'Regular', 5000.0, 2.07], [89, 'Mid-Grade', 2000.0, 2.17], [92, 'Premium', 3500.0, 2.29]]
     '''
     gas = []
     with open('tank.txt', 'r') as file:
         file.readline()
         for lines in file:
             split_string = lines.split(',')
-            gas.append([split_string[0], int(split_string[1]), float(split_string[2])])
+            gas.append([int(split_string[0]), str(split_string[1]), float(split_string[2]), float(split_string[3])])
     return gas 
 
 def get_gas_price(gas):
@@ -72,3 +72,21 @@ def tank_take_away(inventory, gas, amount, msg):
     with open('log.txt', 'a') as history:
         history.write(msg)
     return True
+
+def refill_tank():
+    """ [[str, str, float, float]], str, float, str -> bool """
+    string_list = ['code, type, amount_in_tank, price']
+    left_in_tank = gas_description()
+    for item in left_in_tank:
+        if item[2] < 5000.0:
+            item[2] = 5000.0
+        item[0] = str(item[0])
+        item[2] = str(item[2])
+        item[3] = str(item[3])
+        string_list.append(', '.join(item))
+        message = '\n'.join(string_list)
+    with open('tank.txt', 'w') as file:
+        file.write(message)
+
+
+        
