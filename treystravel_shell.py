@@ -7,15 +7,6 @@ def main():
 
     gas = input(message)
     while True:
-        if gas == 'Refill':
-            treystravel_core.refill_tank()
-            print('Tank is now refilled.')
-        else:
-            try_again = input('\nInvalid choice. Choose a gas number or type "Refill" to generate 5000 gallons of gas into the tank.\n')
-            if try_again == 'Refill':
-                treystravel_core.refill_tank()
-                print('Tank is now refilled.')
-            return None 
         if gas in ['87', '89', '92']:
             gasname = treystravel_core.get_gas_name(gas)
             price = treystravel_core.get_gas_price(gas)             
@@ -28,7 +19,13 @@ def main():
         elif gas == 'Q':
             print('\nProgram Abandoned.')
             break
-        gas = input('\nWrong Input\n')
+        gas = input('\nInvalid choice. Choose a gas number or type "Refill" to generate 5000 gallons of gas into the tank.\n')
+        if gas == 'Refill':
+            treystravel_core.refill_tank()
+            print('\nTank is now refilled.')
+            break
+            
+
     
        
          
