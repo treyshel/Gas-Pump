@@ -7,9 +7,14 @@ def main():
 
     gas = input(message)
     while True:
-        if gas in ['refuel', 'refill', 'Refuel', 'Refill']:
+        if gas == 'Refill':
             treystravel_core.refill_tank()
-            print('Tank is now refueled.')
+            print('Tank is now refilled.')
+        else:
+            try_again = input('\nInvalid choice. Choose a gas number or type "Refill" to generate 5000 gallons of gas into the tank.\n')
+            if try_again == 'Refill':
+                treystravel_core.refill_tank()
+                print('Tank is now refilled.')
             return None 
         if gas in ['87', '89', '92']:
             gasname = treystravel_core.get_gas_name(gas)
@@ -21,9 +26,9 @@ def main():
                 print('Successful Sale')
             break
         elif gas == 'Q':
-            print('Program Abandoned.')
+            print('\nProgram Abandoned.')
             break
-        gas = input('Wrong Input\n')
+        gas = input('\nWrong Input\n')
     
        
          
