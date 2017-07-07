@@ -7,6 +7,10 @@ def main():
 
     gas = input(message)
     while True:
+        if gas in ['refuel', 'refill', 'Refuel', 'Refill']:
+            treystravel_core.refill_tank()
+            print('Tank is now refueled.')
+            return None 
         if gas in ['87', '89', '92']:
             gasname = treystravel_core.get_gas_name(gas)
             price = treystravel_core.get_gas_price(gas)             
