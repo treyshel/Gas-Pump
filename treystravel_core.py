@@ -14,10 +14,10 @@ def open_tank():
 
 def make_message(inventory):
     """ [[str, str, float, float]] -> str """
-    message = '\nWelcome to TREY\'S TRAVEL GAS STATION!\n\nWe are pleased to be your provider for the best gas around.\n\nPlease choose the type of gas\nyou would like to use today:\n'
+    message = '\n         Welcome to TREY\'S TRAVEL GAS STATION!\n\nWe are pleased to be your provider for the best gas around.\n\nPlease choose the type of gas\nyou would like to use today:\n\n'
     for item in inventory:
         message += '{}. {} (${:0.2f})\n'.format(item[0], item[1], item[3])
-    message += '\n\nPush "Q" to quit.\n'
+    message += '\nPush "Q" to quit.\n'
     return message
 
 
