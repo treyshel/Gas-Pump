@@ -11,6 +11,12 @@ def main():
             gasname = treystravel_core.get_gas_name(gas)
             price = treystravel_core.get_gas_price(gas)             
             gallons = float(input(treystravel_core.get_amount_message(gasname, price)))
+
+            while not treystravel_core.is_valid_gallons(inventory, gas, gallons):
+                gallons = input('\nI\'m sorry but we don\'t have that much in our tank. Try another amount or enter Q to quit.\n')
+                if gallons.lower() == 'q':
+                    return None
+                gallons = float(gallons.strip())
             msg = treystravel_core.treys_travel(gas, treystravel_core.get_gas_price(gas), gallons)
             print(msg)
             if treystravel_core.tank_take_away(inventory, gas, gallons, msg):
@@ -22,8 +28,8 @@ def main():
         gas = input('\nInvalid choice. Choose a gas number or type "Refill" to generate 5000 gallons of gas into the tank.\n')
         if gas == 'Refill':
             treystravel_core.refill_tank()
-            print('\nTank is now refilled.')
-            break
+            print('Tank is now refilled.')
+            break 
             
 
     

@@ -31,7 +31,8 @@ def gas_description():
         file.readline()
         for lines in file:
             split_string = lines.split(',')
-            gas.append([int(split_string[0]), str(split_string[1]), float(split_string[2]), float(split_string[3])])
+            # turn the first index below into an int if this breaks things...
+            gas.append([split_string[0].strip(), str(split_string[1].strip()), float(split_string[2].strip()), float(split_string[3].strip())])
     return gas 
 
 def get_gas_price(gas):
@@ -87,6 +88,28 @@ def refill_tank():
         message = '\n'.join(string_list)
     with open('tank.txt', 'w') as file:
         file.write(message)
+
+def is_valid_gallons(inventory, gas, gallons):
+    ''' [[str, str, float, float]], str, float -> bool '''
+    for item in inventory:
+        if gas == item[0]:
+            if gallons > item[2]:
+                return False
+            else:
+                return True
+    return False
+
+
+def main():
+    inventory = gas_description()
+    print(inventory)
+    print(is_valid_gallons(inventory, '87', 10.0))
+    print(is_valid_gallons(inventory, '87', 10000.0))
+
+if __name__ == '__main__':
+    main()
+
+            
 
 
         
