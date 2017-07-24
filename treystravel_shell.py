@@ -1,4 +1,6 @@
 import treystravel_core
+import disk
+
 
 def get_gas(inventory):
     message = treystravel_core.make_message(inventory)
@@ -10,7 +12,7 @@ def get_gas(inventory):
             print('\nProgram Abandoned.')
             exit()
         elif gas == 'Refill':
-            treystravel_core.refill_tank()
+            disk.refill_tank()
             print('Tank is now refilled.')
             exit()
         else:
@@ -29,9 +31,9 @@ def get_gallons(inventory, gas, gasname, price):
             msg = '\nI\'m sorry but we don\'t have that much in our tank. Try another amount or enter Q to quit.\n'
 
 def main():
-    inventory = treystravel_core.open_tank()
+    inventory = disk.open_tank()
     if not inventory:
-        treystravel_core.init_tank()
+        disk.init_tank()
         print('init inventory')
         exit()
     gas = get_gas(inventory)
