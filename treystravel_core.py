@@ -3,17 +3,21 @@
 # Premium = 2.29
 import disk
 
+
 def make_message(inventory):
     """ [[str, str, float, float]] -> str """
     message = '\n         Welcome to TREY\'S TRAVEL GAS STATION!\n\nWe are pleased to be your provider for the best gas around.\n\nPlease choose the type of gas\nyou would like to use today:\n\n'
     for item in inventory.values():
-        message += '{}. {} (${:0.2f})\n'.format(item.get('code', ''), item.get('type', ''), item.get('price', ''))
+        message += '{}. {} (${:0.2f})\n'.format(
+            item.get('code', ''), item.get('type', ''), item.get('price', ''))
     message += '\nPush "Q" to quit.\n'
     return message
+
 
 def get_gas_price(gas, inventory):
     '''(str) -> (float)'''
     return inventory.get(gas).get('price')
+
 
 def get_gas_name(gas, inventory):
     """str -> str"""
@@ -26,28 +30,34 @@ def get_gas_name(gas, inventory):
     elif gas == '60':
         return 'Diesel'
 
+
 def get_amount_message(gasname, price):
-    return '\nOur {} gas is ${} per gallon. How many gallons would you like?\n'.format(gasname, price)
+    return '\nOur {} gas is ${} per gallon. How many gallons would you like?\n'.format(
+        gasname, price)
+
 
 def treys_travel(gas, price, amount_of_gal, gasname):
     total = price * amount_of_gal
-    return '\nYou have purchased {} gallons of {} gas. Your total will be ${:.2f}'.format(amount_of_gal, gasname, total)
+    return '\nYou have purchased {} gallons of {} gas. Your total will be ${:.2f}'.format(
+        amount_of_gal, gasname, total)
+
 
 def tank_take_away(inventory, gas, amount):
     """ Item, str, float -> bool """
-    helper_1 = disk.helper_1_take_away(inventory, gas, amount)
-    helper_2 = disk.helper_2_take_away(inventory, gas, amount)
-    return helper_1 + helper_2
+    take_away = disk.tank_take_away(inventory, gas, amount)
+    return take_away
+
 
 def store_revenue():
     ''' returns a float that stands for how much
     revenue the store is making after every purchase'''
     use_log = disk.in_log()
-    price = 0 
+    price = 0
     for item in use_log:
         item[2] = float(item[2]) + float(item[2])
         price += item[2]
     return price
+
 
 def is_valid_gallons(inventory, gas, gallons):
     ''' {{'code': str, 'type':str, 'amount_of gallons': float, 'price': float}}, str, float -> bool 
@@ -58,3 +68,12 @@ def is_valid_gallons(inventory, gas, gallons):
     False
     '''
     return inventory.get(gas).get('amount_in_tank', -1) >= gallons
+
+
+def init_tank():
+    with open('tank.txt', 'w') as file:
+        file.write("""code, type, amount_in_tank, price
+ 87, Regular, 5000, 1.99
+ 89, Mid-Grade, 5000, 2.09
+ 92, Premium, 5000, 2.29
+ 60, Diesel, 5000, 2.50""")
